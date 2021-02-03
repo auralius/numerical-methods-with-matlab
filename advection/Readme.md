@@ -1,3 +1,11 @@
+What has been implemeted so far:
+- Upwind method
+- Downwind method
+- Lax method
+- Lax-Wendroff method
+
+---------------------------------------------------
+
 Upwind:
 
 ```
