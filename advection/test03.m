@@ -2,6 +2,10 @@ clc
 clear all
 close all
 
+clc
+clear all
+close all
+
 L = 10;
 dx = 0.05;
 x = 0:dx:L;
@@ -10,20 +14,19 @@ dt = 0.05;
 T = 20;
 t = 0:dt:T;
 
-%% Lax, moving to the right 
-c = 0.5;
+u = zeros(length(x), 1);
+f = zeros(length(x), 1);
 
-N = length(x);
-u = zeros(N,1);
-f = zeros(N,1);
+%% ------------------------------------------------------------
+c = 0.5; % moving to right
 
-for k = 1:N
+for k = 1:length(x)
     u(k) = exp(-10*(x(k)-2).^2);
 end
 
-h = figure;
+figure;
 h1 = plot(0,0);
-title('Lax, moving to the right c = 0.5')
+title('Lax-Wendroff, moving to the right c = 0.5')
 ylim([0 1]);
 
 for k = 1:length(t)
@@ -32,20 +35,16 @@ for k = 1:length(t)
     drawnow
 end
 
-%% Lax, moving to the left 
-c = -0.5;
+%% ------------------------------------------------------------
+c = -0.5; % moving to left
 
-N = length(x);
-u = zeros(N,1);
-f = zeros(N,1);
-
-for k = 1:N
+for k = 1:length(x)
     u(k) = exp(-10*(x(k)-8).^2);
 end
 
-h = figure;
+figure;
 h1 = plot(0,0);
-title('Lax, moving to the left, c = -0.5')
+title('Lax-Wendroff, moving to the left, c = -0.5')
 ylim([0 1]);
 
 for k = 1:length(t)
@@ -53,7 +52,6 @@ for k = 1:length(t)
     set(h1,'XData',x,'Ydata',u);
     drawnow
 end
-
 %% Test system of PDE: cross-current heat exchanger
 
 % [1] F. Zobiri, E. Witrant, and F. Bonne, “PDE Observer Design for 
@@ -86,7 +84,7 @@ for k = 1:N
     TC(k) = 273+10;
 end
 
-h=figure;
+figure;
 hold on
 h3 = plot(0,0,'r');
 h4 = plot(0,0,'b');
