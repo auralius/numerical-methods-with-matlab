@@ -81,11 +81,9 @@ TH = zeros(N,1);
 TC = zeros(N,1);
 f = zeros(N,1);
 
-% Intial conditoin
-for k = 1:N
-    TH(k) = 273+30;
-    TC(k) = 273+10;
-end
+% Intial condition
+TH(1:length(x)) = 273+30;
+TC(1:length(x)) = 273+10;
 
 h=figure;
 hold on
@@ -98,7 +96,6 @@ ylabel('Temperature')
 legend('Hot flow','Cold flow')
 
 for k = 1:length(t)
-    
     set(h3,'XData',x,'Ydata',TH);
     set(h4,'XData',x,'Ydata',TC);
     drawnow;

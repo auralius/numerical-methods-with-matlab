@@ -14,25 +14,21 @@ Delta_t = tF/Nt;
 U = zeros(Nx+1,Nt+1);
 
 % Apply the initial condition U(x,0)=f(x)
-for j = 1 : Nx+1 
-  U(j,1) = f((j-1)*Delta_x);
-end 
+j = 1:Nx+1;
+U(j,1) = f((j-1)*Delta_x);
+
+% Keep the boundary condition
+k = 1:Nt;  
+U(1,k) = p((k-1)*Delta_t);
+U(Nx+1,k) = q((k-1)*Delta_t);
 
 r = alpha^2*Delta_t/Delta_x^2;
 
-for k = 1 : Nt     % time-wise
-  
-  % Keep the boundary condition
-  U(1,k) = p((k-1)*Delta_t);
-  U(Nx+1,k) = q((k-1)*Delta_t);
-
-  for j = 2 : Nx   % length-wise
+for k = 1:Nt      % time-wise 
+    j = 2 : Nx;   % length-wise
     U(j,k+1) = r*U(j-1,k) + (1-2*r) * U(j,k) + r*U(j+1,k);
-  end
-  
 end
-
+  
 U = U(:,1:Nt); % the last column is untouched, remove it
 
 end
-
