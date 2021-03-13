@@ -11,6 +11,8 @@ function u_array = diffusion_1d(u_array, ...
 r = alpha^2*Delta_t/Delta_x^2;
 
 j = 2:length(u_array)-1;
-u_array(j) = r*u_array(j-1) + (1-2*r) * u_array(j) + r*u_array(j+1) + g_array(j)*Delta_t;
+u_array(j) = ...
+    u_array(j) + r*(u_array(j+1) -2 * u_array(j) + u_array(j-1)) + ...
+    g_array(j)*Delta_t;
  
 end 

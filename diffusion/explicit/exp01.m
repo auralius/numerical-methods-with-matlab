@@ -15,11 +15,10 @@ Nx = 10;
 Nt = 1000;
 
 u_array = zeros(1,Nx+1); % +1 because we start from 0 to Nx
-u_array = apply_ic(u_array,@f, L/Nx);
 g_array = zeros(1,Nx+1);
+u_array = apply_ic(u_array,@f, L/Nx);
 
-
-figure
+hf = figure;
 hold on
 h = plot(0,0,'-*');
 ylim([0 70])
@@ -29,6 +28,7 @@ x = 0 : Nx;
 for k = 1 : Nt
     set(h, 'XData', x, 'YData', u_array)
     drawnow;
+    write2gif(hf, k, 'exp01.gif');
     
     u_array = apply_bc(u_array, L/Nx, ["Dirichlet", "Dirichlet"], [0, 0]);   
     u_array = diffusion_1d(u_array, g_array, alpha, L/Nx, tF/Nt);
