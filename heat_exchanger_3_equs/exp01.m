@@ -20,11 +20,10 @@ dx = L/Nx;
 v1 = 0.6366197724;
 v2 = 0.1657863990;
 v3 = 0.00003585526318;
-d1 = 6283.185308;
-d2 = 7539.822370;
-C1 = 6416.702995;
-C2 = 25249.35715;
-C3 = 2626.371458;
+d1 = 0.9792;
+d2 = 0.2986;
+d3 = 2.3923;
+d4 = 2.8708;
 
 TH = zeros(1, Nx+1);
 TC = zeros(1, Nx+1);
@@ -64,12 +63,12 @@ for k = 1 : Nt
     
     % TW(2:end-1) : it means we ignore pahnatom nodes
     
-    fH = -d1/C1.*(TH-TW(2:end-1));
+    fH = -d1.*(TH-TW(2:end-1));
     TH = upwind(TH, fH, v1, dt, dx);
     
-    fC = d2/C2.*(TH-TW(2:end-1));
+    fC = d2.*(TH-TW(2:end-1));
     TC = downwind(TC, fC, -v2, dt, dx);
     
-    fW(2:end-1) = d1/C3.*(TH-TW(2:end-1)) - d2/C3.*(TW(2:end-1)-TC);
+    fW(2:end-1) = d3.*(TH-TW(2:end-1)) - d4.*(TW(2:end-1)-TC);
     TW = diffusion_1d(TW, fW, sqrt(v3), dx, dt);
 end
