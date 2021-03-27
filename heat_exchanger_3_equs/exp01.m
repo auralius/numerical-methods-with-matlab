@@ -1,8 +1,5 @@
-%% Test system of PDE: cross-current heat exchanger
-
-% [1] F. Zobiri, E. Witrant, and F. Bonne, “PDE Observer Design for 
-% Counter-Current Heat Flows in a Heat-Exchanger,” IFAC-PapersOnLine, vol. 
-% 50, no. 1, pp. 7127–7132, 2017.
+% Countercurrent Double-Pipe Heat Exchanger 
+% https://www.maplesoft.com/applications/view.aspx?SID=119402&view=html
 
 clear all;
 close all;
@@ -49,8 +46,8 @@ xlabel('x')
 ylabel('Temperature')
 legend('Hot flow', 'Cold flow', 'Wall')
 
-xa = 1:Nx+1;
-xb = 0:Nx+2;
+xa = 1:Nx+1; % for advection
+xb = 0:Nx+2; % for diffusion
 for k = 1 : Nt
     set(h1,'XData',xa,'Ydata',TH);
     set(h2,'XData',xa,'Ydata',TC);
