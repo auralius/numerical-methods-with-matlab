@@ -17,9 +17,10 @@ N = length(x);
 u = zeros(N,1);
 f = zeros(N,1);
 
-for k = 1:N
-    u(k) = exp(-(x(k)-2).^2);
-end
+%for k = 1:N
+%    u(k) = exp(-(x(k)-2).^2);
+%end
+u(1) = 1;
 
 h = figure;
 h1 = plot(0,0);

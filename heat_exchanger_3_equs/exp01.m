@@ -58,7 +58,7 @@ for k = 1 : Nt
     
     TW = apply_bc(TW, L/Nx, ["Neumann", "Neumann"], [0, 0]);  
     
-    % TW(2:end-1) : it means we ignore pahnatom nodes
+    % TW(2:end-1) : it means we ignore phantom nodes
     
     fH = -d1.*(TH-TW(2:end-1));
     TH = upwind(TH, fH, v1, dt, dx);
