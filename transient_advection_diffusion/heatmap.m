@@ -1,6 +1,6 @@
 % Disable interpolation for faster rendering
 
-function heatmap(data, interpolate)
+function im = heatmap(data, interpolate,lim)
 
 if interpolate == true
     % Define integer grid of coordinates for the above data
@@ -11,9 +11,9 @@ if interpolate == true
 
     % Interpolate the data and show the output
     interpolated_data = interp2(X, Y, data, X2, Y2, 'linear');
-    imagesc('CData', interpolated_data);
+    im = imagesc(interpolated_data);
 else
-    imagesc('CData', data);
+    im = imagesc(data);
 end
 
 colormap(jet);

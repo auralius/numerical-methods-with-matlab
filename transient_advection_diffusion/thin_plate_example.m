@@ -36,12 +36,12 @@ f_array = zeros(Nx+2,Ny+1);
 hfig = figure;
 axis off;
 hold on;
-title('Diffusion')
+title('Thin Plate')
 caxis([300 800])
 
 for k = 1 : Nt 
     
-    % Heat source at the center of the plate, keep it true at all time
+    % Heat source at left-edge of the plate, keep it true at all time
     T_array = apply_bc(T_array, dx, dy, ...
               ["Dirichlet", "Neumann", "Neumann", "Neumann"], ...
               [800, 0, 0, 0]);
