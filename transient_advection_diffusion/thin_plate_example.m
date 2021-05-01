@@ -1,4 +1,8 @@
+% https://www.comsol.com/model/out-of-plane-heat-transfer-for-a-thin-plate-493
+
 close all;
+clear all;
+clc;
 
 dz = 0.01;
 cp = 385;
@@ -17,14 +21,12 @@ Nx = lx/dx;
 Ny = ly/dy;
 Nt = tF/dt;
 
-tF = 10000; % Simulation time, modify accordingly
+tF = 100; % Simulation time, modify accordingly
 
 h = 10;
 sigma = 5.67e-8;
 e = 0.5;
 T_inf = 300;
-
-clear T_array u_array v_array f_array;
 
 % Some extra nodes for phantom nodes
 u_array = zeros(Nx+2,Ny+1); % Disable advection
@@ -33,11 +35,15 @@ T_array = 297.15*ones(Nx+2,Ny+1);
 f_array = zeros(Nx+2,Ny+1);
 
 % Preparation for plotting
+
 hfig = figure;
-axis off;
 hold on;
-title('Thin Plate')
-caxis([300 800])
+clims = [300 800];
+im = imagesc(T_array(2:end-1,1:end-1), clims);
+colormap(jet);
+colorbar;
+axis off;
+title('Thin Plate');
 
 for k = 1 : Nt 
     
@@ -58,10 +64,8 @@ for k = 1 : Nt
                                          dy, ...
                                          alpha, ...
                                          f_array);
-                                   
-    %heatmap(T_array, false);
-    
-    %write2gif(hfig, k, 'thinplate.gif');
+    if mod(k-1,10000) == 0                              
+        im.CData = T_array(2:end-1,1:end-1);
+        write2gif(hfig, k, 'thinplate.gif');
+    end
 end
-
-heatmap(T_array, false);
