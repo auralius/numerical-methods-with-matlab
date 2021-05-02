@@ -14,9 +14,6 @@ Nx = lx/dx+1+2;
 Ny = ly/dy+1+2;
 Nt = tF/dt;
 
-
-%% Test for advection only (horizontal upwind direction)
-
 % Diffusion
 alpha = 0.2;
 
@@ -26,7 +23,6 @@ f_matrix = zeros(Ny, Nx);
 
 % Initialize u and v
 [u_matrix,v_matrix] = generate_vector_field(-4, 4 , Nx, Ny, dx, dy);
-
 
 % Preparation for plotting
 hfig = figure;
