@@ -1,16 +1,16 @@
-% This function generates a vector field of f(i,j) = c_row*i + c_col*j.
+% This function generates a vector field of f(i,j) = c_x*x + c_y*y.
 % It returns a matrix of n_row x n_col.
 % d_row and d_col describe the step distance. They are used to convert row
 % and column into actulal x and y.
 
-function  [U,V] = generate_vector_field(c_row,c_col,n_row,n_col,d_row,d_col)
+function  [X,Y] = generate_vector_field(c_x, c_y, Nx, Ny, dx, dy)
 
-mid_r = n_row/2*d_row;
-mid_c = n_col/2*d_col;
+mid_x = Nx/2*dx;
+mid_y = Ny/2*dy;
 
-[R,C] = meshgrid([0:d_row:(n_row-1)*d_row]-mid_r, [0:d_col:(n_col-1)*d_col]-mid_c);
+[X, Y] = meshgrid([0:dy:(Ny-1)*dy]-mid_y, [0:dx:(Nx-1)*dx]-mid_x);
 
-U = c_row * R;
-V = c_col * C;
+X = c_x * X;
+Y = c_y * Y;
 
 end

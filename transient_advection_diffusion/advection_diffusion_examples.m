@@ -1,28 +1,30 @@
 close all;
 clear all;
 
-tF = 5;
-h = 2;
-l = 2;
+tF = 3;         % Simulation time, modify accordingly
+
+lx = 2;         % The dimension
+ly = 2;
+
 dt = 0.001;
 dx = 0.1;
 dy = 0.1;
 
-Nx = l/dx+1+2;
-Ny = h/dy+1+2;
+Nx = lx/dx+1+2;
+Ny = ly/dy+1+2;
 Nt = tF/dt;
 
 
 %% Test for advection only (horizontal upwind direction)
 
 % Diffusion
-alpha = 0.0;
+alpha = 0.2;
 
 % Some extra nodes for phantom nodes
-T_matrix = 270*ones(Nx,Ny);
-f_matrix = zeros(Nx,Ny);
+T_matrix = 270*ones(Ny, Nx);
+f_matrix = zeros(Ny, Nx);
 
-% Initialize v and u
+% Initialize u and v
 [u_matrix,v_matrix] = generate_vector_field(-4, 4 , Nx, Ny, dx, dy);
 
 
@@ -33,8 +35,13 @@ clims = [200 1000];
 im = imagesc(T_matrix(2:end-1,2:end-1), clims);
 colormap(jet);
 colorbar;
-axis off;
-quiver(v_matrix(2:end-1,2:end-1), u_matrix(2:end-1,2:end-1));
+axis off equal;
+
+htext = text(Nx/2,-1, 'Time=');
+htext.FontWeight = 'bold';
+
+% Flip u and v when plotting
+quiver(v_matrix(2:end-1,2:end-1), u_matrix(2:end-1,2:end-1), 'k');
 
 for k = 1 : Nt 
     T_matrix(5,10) = 1000;
@@ -54,6 +61,7 @@ for k = 1 : Nt
     
      if mod(k-1,10) == 0
         im.CData = T_matrix(2:end-1,2:end-1);
+        htext.String = ['Time=', num2str((k-1)*dt),'s'] ;
         drawnow
         write2gif(hfig, k, 'advection_diffusion_circular_vector_field.gif');
      end
