@@ -28,7 +28,7 @@ Both diffusion and advection occur
 
 Based on: https://www.comsol.com/model/out-of-plane-heat-transfer-for-a-thin-plate-493  
 A thin copper plate  
-The whole plate surface is initialized at 270 K  
+The whole plate surface is initialized at 297.15 K  
 The boundaries are Neumann with an exception on the left side wall. It is Dirichlet, constrained at 800K  
 
 ![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/thinplate_diffusion_only.gif)
