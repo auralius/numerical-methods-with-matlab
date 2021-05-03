@@ -25,7 +25,7 @@ The boundaries are Neumann with an exception in the left side wall. It is Dirich
 ![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/thinplate_diffusion_only.gif)
 
 -------------------------
-A conter-flow heat exchanger  
+A counter-flow heat exchanger  
 The temperature of  the cold source is 280K  
 The temperature of  the hot source is 360K
 
