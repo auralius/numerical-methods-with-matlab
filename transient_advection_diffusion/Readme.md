@@ -20,7 +20,7 @@ The boundaries are Dirichlet, contrained at 270K
 
 Based on: https://www.comsol.com/model/out-of-plane-heat-transfer-for-a-thin-plate-493  
 A thin copper plate  
-The boundaries are Neumann exceot for the left side wall. It is Dirichlet, constrained at 800K  
+The boundaries are Neumann with an exception in the left side wall. It is Dirichlet, constrained at 800K  
 
 ![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/thinplate_diffusion_only.gif)
 
