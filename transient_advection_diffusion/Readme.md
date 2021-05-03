@@ -20,7 +20,7 @@ The boundaries are Dirichlet, contrained at 270K
 
 Based on: https://www.comsol.com/model/out-of-plane-heat-transfer-for-a-thin-plate-493
 
-![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/advection_diffusion_circular_vector_field.gif)
+![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/thinplate_diffusion_only.gif)
 
 -------------------------
 A conter-flow heat exchanger  
