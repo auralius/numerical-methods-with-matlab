@@ -35,7 +35,7 @@ axis off equal;
 hold on;
 title('Advection Only');
 
-htext = text(Nx/2, 0, 'Time=');
+htext = text(Nx/2, -1, 'Time=');
 htext.FontWeight = 'bold';
 
 for k = 1 : Nt
