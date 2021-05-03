@@ -18,6 +18,14 @@ The boundaries are Dirichlet, contrained at 270K
 
 -------------------------
 
+A circular vector field is defined on a surface of a plane  
+This vector field corresponds to the advection vectors  
+Both diffusion and advection occur  
+
+![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/circular_vector_field.gif)
+
+-------------------------
+
 Based on: https://www.comsol.com/model/out-of-plane-heat-transfer-for-a-thin-plate-493  
 A thin copper plate  
 The boundaries are Neumann with an exception in the left side wall. It is Dirichlet, constrained at 800K  
