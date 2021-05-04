@@ -1,7 +1,7 @@
 - Givan below a thin plate.     
 - Temperature at its center is kept at 800 K.    
 - The whole plate surface is initialized at 270 K.   
-- No advection occusr on the plate, only diffusion.  
+- No advection occurs on the plate, only diffusion.  
 - The boundaries are thermally insulated (Neumann).  
 
 ![](https://github.com/auralius/numerical-methods-with-matlab/blob/main/transient_advection_diffusion/images/diffusion_only.gif)
