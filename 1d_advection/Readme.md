@@ -13,7 +13,7 @@ c = 0.5
 u(x,0) = exp(-(x-2).^2)
 ```
 
-![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/advection/images/upwind.gif)
+![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/1d_advection/images/upwind.gif)
 
 Downwind:
 
@@ -22,8 +22,8 @@ c = -0.5
 u(x,0) = exp(-(x-8).^2)
 ```
 
-![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/advection/images/downwind.gif)
+![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/1d_advection/images/downwind.gif)
 
 Cross current heat-exchanger:
 
-![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/advection/images/heat_exchanger.gif)
+![alt text](https://github.com/auralius/numerical-methods-with-matlab/blob/main/1d_advection/images/heat_exchanger.gif)
