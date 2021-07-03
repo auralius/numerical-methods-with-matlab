@@ -61,11 +61,11 @@ for k = 1 : Nt
     % TW(2:end-1) : it means we ignore phantom nodes
     
     fH = -d1.*(TH-TW(2:end-1));
-    TH = upwind(TH, fH, v1, dt, dx);
+    TH = upwind_solver(TH, fH, v1, dt, dx);
     
     fC = d2.*(TH-TW(2:end-1));
-    TC = downwind(TC, fC, -v2, dt, dx);
+    TC = downwind_solver(TC, fC, -v2, dt, dx);
     
     fW(2:end-1) = d3.*(TH-TW(2:end-1)) - d4.*(TW(2:end-1)-TC);
-    TW = diffusion_1d(TW, fW, sqrt(v3), dx, dt);
+    TW = diffusion_solver(TW, fW, sqrt(v3), dx, dt);
 end
