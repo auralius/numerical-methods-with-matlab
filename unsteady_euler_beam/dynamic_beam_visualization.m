@@ -11,10 +11,14 @@ title(t);
 ylabel('m');
 xlabel('m');
 
+htext = text(beam.length/2, min(min(beam.w)/2), 'Time=');
+htext.FontWeight = 'bold';
+
 fn = strcat(title_text, '.gif');
 
 for k = 1 : length(beam.t)
     set(h_plot,'XData',beam.x, 'YData', beam.w(k,:))
+    htext.String = ['Time=', num2str(beam.t(k)), 's'] ;
     drawnow
     
     write2gif(fig, k, fn);    
