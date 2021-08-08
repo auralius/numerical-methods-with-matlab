@@ -27,7 +27,7 @@ end
 
 % bottom-edge
 if lower(types(4)) == "dirichlet"
-    T(1,:) = repmat(values(4),1,c);
+    T(end,:) = repmat(values(4),1,c);
 elseif lower(types(4)) == "neumann"
     T(end,:) = T(end-2,:) - repmat(2 * Delta_y * values(4),1,c);
 end
