@@ -2,7 +2,7 @@
 Navier-Stokes unsteady simulation for cavity flow and channel flow in a 2D rectangular domain.
 
 
-Check the [PDF](../main/numerical_methods_for_complex_systems.pdf) for more details.
+Check the [PDF](https://github.com/auralius/numerical-methods-with-matlab/blob/main/numerical_methods_for_complex_systems.pdf) for more details.
 
 
 Cavity Flow  
