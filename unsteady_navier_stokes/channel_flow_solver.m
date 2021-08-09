@@ -1,11 +1,12 @@
-function [t,X,Y,U,V, CE] = cavity_flow_solver(lx, ...
+function [t,X,Y,U,V, CE] = channel_flow_solver(lx, ...
     ly, ...
     dx, ...
     dy, ...
     dt, ...
     rho, ...
-    nu,...
-    re, ...
+    nu, ...
+    ip, ...
+    op, ...
     tsim)
 
 % start from zero, add phantom nodes
@@ -14,13 +15,13 @@ ny = ceil(ly/dy)+1+2;
 
 % The order of the boundaries: left, right, top, bottom
 u_bc_types =  ["dirichlet", "dirichlet", "dirichlet", "dirichlet"];
-u_bc_values = [0, 0, re*nu/(rho*sqrt(lx*ly)), 0];
+u_bc_values = [0, 0, 0, 0];
 
 v_bc_types =  ["dirichlet", "dirichlet", "dirichlet", "dirichlet"];
 v_bc_values = [0, 0, 0, 0];
 
-p_bc_types = ["neumann", "neumann", "dirichlet", "neumann"];
-p_bc_values = [0, 0, 0, 0];
+p_bc_types = ["dirichlet", "dirichlet", "neumann", "neumann"];
+p_bc_values = [ip, op, 0, 0];
 
 % Phantom nodes in all sides, even though the boundary is a Dirichlet type
 u = zeros(ny,nx);
@@ -39,8 +40,8 @@ v = apply_bc(v, dx, dy, u_bc_types, v_bc_values);
 
 n_it = ceil((tsim+1)/dt);
 
-U = zeros(nx-2,ny-2,n_it);
-V = zeros(nx-2,ny-2,n_it);
+U = zeros(ny-2,nx-2,n_it);
+V = zeros(ny-2,nx-2,n_it);
 t = zeros(n_it, 1);
 CE = zeros(n_it, 1);
 
@@ -56,11 +57,11 @@ for k = 1 : n_it
     
     % Solve the pressure equation
     % Gauss-Siedel loop
-    while error > 1e-6
+    while error > 1e-5
         p_old = p;
         
-        for i = 2:nx-1
-            for j = 3:ny-1   % Dirichlet must no modify the boundary
+        for i = 3:nx-2       % Dirichlet must no modify the boundary
+            for j = 2:ny-1   
                 p(j,i) = ...
                     (dy^2*(p(j,i-1)+p(j,i+1)) + ...
                     dx^2*(p(j+1,i)+p(j-1,i)) - ...

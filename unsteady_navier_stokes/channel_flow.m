@@ -4,29 +4,33 @@ clc
 close all
 
 %%
-lx = 1;      % Domain width
-ly = 1;      % Domain height
+lx = 3;      % Domain width
+ly = 0.1;    % Domain height
 
-dx = 1/200;  % Horizontal spatial increment
-dy = 1/200;  % Vertical spatial increment
+dx = 1/300;  % Horizontal spatial increment
+dy = 1/100;  % Vertical spatial increment
 
 dt = 0.001;  % Temporal increment
 
-rho = 1.0;   % Fluid's density
-re = 50;     % Reynold's number
+rho = 1000;  % Fluid's density
 nu = 0.001;  % Dynamic viscosity
 
 tsim = 10;   % How long?
 
+ip = 5;      % Inlet pressure 
+op = 2;      % Outlet pressure 
+
+
 %%
-[t, X, Y, U, V,CE] = cavity_flow_solver(lx,...
+[t, X, Y, U, V,CE] = channel_flow_solver(lx,...
     ly, ...
     dx, ...
     dy, ...
     dt, ...
     rho, ...
-    nu, ...
-    re, ...
+    nu, ...  
+    ip, ...
+    op, ...
     tsim);
 
 
@@ -36,8 +40,8 @@ hold on
 contourf(X,Y,U(:,:,1));
 colormap(jet);
 colorbar;
-axis square;
-hutext = text(0.5,-0.1, 'Time=');
+caxis([0 max(U(:))])
+hutext = text(1,-0.01, 'Time=');
 hutext.FontWeight = 'bold';
 title('Horizontal Fluid Velocity (u)')
 
@@ -46,7 +50,7 @@ for k=1:length(t)
         contourf(X,Y,U(:,:,k));
         hutext.String = ['Time=', num2str((k-1)*dt),'s'] ;
         drawnow
-        write2gif(hfig1, k, 'cavity_flow_u.gif');
+        write2gif(hfig1, k, 'channel_flow_u.gif');
     end
 end
 
@@ -56,8 +60,8 @@ hold on
 contourf(X,Y,V(:,:,1));
 colormap(jet);
 colorbar;
-axis square;
-hutext = text(0.5,-0.1, 'Time=');
+caxis([0 max(V(:))])
+hutext = text(1,-0.01, 'Time=');
 hutext.FontWeight = 'bold';
 title('Vertical Fluid Velocity (v)')
 
@@ -66,6 +70,6 @@ for k=1:length(t)
         contourf(X,Y,V(:,:,k));
         hutext.String = ['Time=', num2str((k-1)*dt),'s'] ;
         drawnow
-        write2gif(hfig2, k, 'cavity_flow_v.gif');
+        write2gif(hfig2, k, 'channel_flow_v.gif');
     end
 end
