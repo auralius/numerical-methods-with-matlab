@@ -57,9 +57,9 @@ end
 
 %% Test system of PDE: cross-current heat exchanger
 
-% [1] F. Zobiri, E. Witrant, and F. Bonne, “PDE Observer Design for 
-% Counter-Current Heat Flows in a Heat-Exchanger,” IFAC-PapersOnLine, vol. 
-% 50, no. 1, pp. 7127–7132, 2017.
+% [1] F. Zobiri, E. Witrant, and F. Bonne, "PDE Observer Design for
+% Counter-Current Heat Flows in a Heat-Exchanger", IFAC-PapersOnLine, vol.
+% 50, no. 1, pp. 7127-7132, 2017.
 
 clear u x;
 
@@ -99,7 +99,7 @@ for k = 1:length(t)
     set(h3,'XData',x,'Ydata',TH);
     set(h4,'XData',x,'Ydata',TC);
     drawnow;
-    
+
     f = d1.*(TH-TC);
     TH = upwind_solver(TH, f, c1, dt, dx);
     f = d2.*(TH-TC);

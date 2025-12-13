@@ -10,7 +10,7 @@ dt = 0.05;
 T = 20;
 t = 0:dt:T;
 
-%% Lax, moving to the right 
+%% Lax, moving to the right
 c = 0.5;
 
 N = length(x);
@@ -27,12 +27,12 @@ title('Lax, moving to the right c = 0.5')
 ylim([0 1]);
 
 for k = 1:length(t)
-    u = lax(u,f, c, dt, dx);
+    u = lax_solver(u,f, c, dt, dx);
     set(h1,'XData',x,'Ydata',u);
     drawnow
 end
 
-%% Lax, moving to the left 
+%% Lax, moving to the left
 c = -0.5;
 
 N = length(x);
@@ -49,15 +49,15 @@ title('Lax, moving to the left, c = -0.5')
 ylim([0 1]);
 
 for k = 1:length(t)
-    u = lax(u,f, c, dt, dx);
+    u = lax_solver(u,f, c, dt, dx);
     set(h1,'XData',x,'Ydata',u);
     drawnow
 end
 
 %% Test system of PDE: cross-current heat exchanger
 
-% [1] F. Zobiri, E. Witrant, and F. Bonne, “PDE Observer Design for 
-% Counter-Current Heat Flows in a Heat-Exchanger,” IFAC-PapersOnLine, vol. 
+% [1] F. Zobiri, E. Witrant, and F. Bonne, “PDE Observer Design for
+% Counter-Current Heat Flows in a Heat-Exchanger,” IFAC-PapersOnLine, vol.
 % 50, no. 1, pp. 7127–7132, 2017.
 
 clear u x;
@@ -98,9 +98,9 @@ for k = 1:length(t)
     set(h3,'XData',x,'Ydata',TH);
     set(h4,'XData',x,'Ydata',TC);
     drawnow;
-    
+
     f = d1.*(TH-TC);
-    TH = lax(TH, f, c1, dt, dx);
+    TH = lax_solver(TH, f, c1, dt, dx);
     f = d2.*(TH-TC);
-    TC = lax(TC, f, c2, dt, dx);
+    TC = lax_solver(TC, f, c2, dt, dx);
 end
